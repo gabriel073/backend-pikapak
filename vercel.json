@@ -9,8 +9,7 @@
   "builds": [
     {
       "src": "index.js",
-      "use": "@vercel/node",
-      "buildCommand": "next build"
+      "use": "@vercel/node"
     }
   ]
 }
