@@ -12,8 +12,8 @@ const postUserHandler = async (req, res) => {
     if (
       user.name &&
       user.surname &&
-      user.email &&
       user.whatsapp &&
+      user.email &&
       user.password
     ) {
       await postUser(user)
