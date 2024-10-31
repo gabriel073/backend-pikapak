@@ -37,6 +37,8 @@ const postRecoveryKey = async (email) => {
     },
   })
 
+  const recoveryUrl = 'http://localhost:5173/recovery' || process.env.RECOVERY_URL;
+
   const mail = {
     from: process.env.SENDER_EMAIL,
     to: user.email,
@@ -45,7 +47,7 @@ const postRecoveryKey = async (email) => {
       <h2>Hola ${user.name}</h2>
       <h2>Se solicitó la recuperación de contraseña en la página de Pikapak para la cuenta asociada a esta dirección de correo electrónico</h2>
       <h2>Si no fuiste vos por favor ignorá este mail</h2>
-      <h2>Si necesitás recuperar tu contraseña podés hacer click en el siguiente <a href="${process.env.RECOVERY_URL}?key=${user.recoveryKey}">enlace</a></h2>
+      <h2>Si necesitás recuperar tu contraseña podés hacer click en el siguiente <a href="${recoveryUrl}?key=${user.recoveryKey}">enlace</a></h2>
     `,
   }
 

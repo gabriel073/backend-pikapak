@@ -10,8 +10,5 @@ const usersRouter = Router()
 usersRouter.post('/', postUserHandler)
 usersRouter.post('/recovery', postRecoveryKeyHandler)
 usersRouter.put('/update', putNewPasswordHandler)
-usersRouter.get('/ping', (req, res) => {
-  res.status(200).json({ message: 'pong' });
-});
 
 module.exports = usersRouter
