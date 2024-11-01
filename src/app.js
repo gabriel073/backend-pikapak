@@ -8,7 +8,7 @@ const server = express()
 server.use(express.json())
 server.use(
   cors({
-    origin: "*",
+    origin: "https://pikapak.vercel.app",
     credentials: true,
   })
 )
