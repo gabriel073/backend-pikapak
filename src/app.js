@@ -16,4 +16,4 @@ server.use(cookieParser())
 
 server.use(routes)
 
-export default server
+export default server;
