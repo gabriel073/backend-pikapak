@@ -1,8 +1,8 @@
-const { Router } = require('express')
-const { postEmailHandler } = require('../handlers/newsletterHandlers')
+import { Router } from 'express'
+import { postEmailHandler } from '../handlers/newsletterHandlers'
 
 const newsletterRouter = Router()
 
 newsletterRouter.post('/', postEmailHandler)
 
-module.exports = newsletterRouter
+export default newsletterRouter

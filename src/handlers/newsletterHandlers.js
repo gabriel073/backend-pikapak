@@ -1,4 +1,4 @@
-const { postEmail } = require('../controllers/newsletterController')
+const { postEmail } = require('../controllers/newsletterController').default
 
 const postEmailHandler = async (req, res) => {
   const { email } = req.body

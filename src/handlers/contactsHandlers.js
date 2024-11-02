@@ -1,4 +1,4 @@
-const { postContact } = require('../controllers/contactsController')
+const { postContact } = require('../controllers/contactsController').default
 
 const postContactHandler = async (req, res) => {
   const contact = req.body

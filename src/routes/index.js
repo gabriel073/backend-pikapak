@@ -1,9 +1,9 @@
-const { Router } = require('express')
-const usersRouter = require('./usersRouter')
-const contactsRouter = require('./contactsRouter')
-const loginRouter = require('./loginRouter')
-const protectedRouter = require('./protectedRouter')
-const newsletterRouter = require('./newsletterRouter')
+import { Router } from 'express'
+import usersRouter from './usersRouter'
+import contactsRouter from './contactsRouter'
+import loginRouter from './loginRouter'
+import protectedRouter from './protectedRouter'
+import newsletterRouter from './newsletterRouter'
 
 const routes = Router()
 
@@ -13,4 +13,4 @@ routes.use('/login', loginRouter)
 routes.use('/protected', protectedRouter)
 routes.use('/newsletter', newsletterRouter)
 
-module.exports = routes
+export default routes

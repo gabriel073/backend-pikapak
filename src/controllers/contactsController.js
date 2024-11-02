@@ -1,5 +1,5 @@
-const { PrismaClient } = require('@prisma/client')
-const nodeMailer = require('nodemailer')
+import { PrismaClient } from '@prisma/client'
+import { createTransport } from 'nodemailer'
 
 const prisma = new PrismaClient()
 
@@ -7,7 +7,7 @@ const postContact = async (contact) => {
   await prisma.contact.create({ data: { ...contact, completed: false } })
   await prisma.$disconnect()
 
-  const transporter = nodeMailer.createTransport({
+  const transporter = createTransport({
     host: 'smtp.gmail.com',
     port: 465,
     secure: true,
@@ -38,4 +38,4 @@ const postContact = async (contact) => {
   })
 }
 
-module.exports = { postContact }
+export default { postContact }

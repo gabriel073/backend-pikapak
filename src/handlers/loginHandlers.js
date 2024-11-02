@@ -1,4 +1,4 @@
-const { getUserbyEmail } = require('../controllers/usersControllers')
+const { getUserbyEmail } = require('../controllers/usersControllers').default
 const passChecker = require('../utils/passChecker')
 const jwt = require('jsonwebtoken')
 

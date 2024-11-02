@@ -2,7 +2,7 @@ const {
   postUser,
   postRecoveryKey,
   putNewPassword,
-} = require('../controllers/usersControllers')
+} = require('../controllers/usersControllers').default
 
 const jwt = require('jsonwebtoken')
 

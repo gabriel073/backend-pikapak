@@ -1,7 +1,7 @@
-const { PrismaClient } = require('@prisma/client')
-const bcrypt = require('bcryptjs')
-const nodeMailer = require('nodemailer')
-const jwt = require('jsonwebtoken')
+import { PrismaClient } from '@prisma/client'
+import { hash } from 'bcryptjs'
+import { createTransport } from 'nodemailer'
+import { sign } from 'jsonwebtoken'
 
 const prisma = new PrismaClient()
 
@@ -11,7 +11,7 @@ const getUserbyEmail = async (email) => {
 }
 
 const postUser = async (user) => {
-  const hashedPassword = await bcrypt.hash(user.password, 5)
+  const hashedPassword = await hash(user.password, 5)
 
   const createdUser = await prisma.user.create({
     data: { ...user, password: hashedPassword },
@@ -21,13 +21,13 @@ const postUser = async (user) => {
 
 const postRecoveryKey = async (email) => {
   const user = await getUserbyEmail(email)
-  user.recoveryKey = jwt.sign(user, process.env.JWT_SECRET_KEY, {
+  user.recoveryKey = sign(user, process.env.JWT_SECRET_KEY, {
     expiresIn: '1h',
   })
   await prisma.user.update({ where: { email }, data: user })
   await prisma.$disconnect()
 
-  const transporter = nodeMailer.createTransport({
+  const transporter = createTransport({
     host: 'smtp.gmail.com',
     port: 465,
     secure: true,
@@ -63,7 +63,7 @@ const postRecoveryKey = async (email) => {
 const putNewPassword = async (email, key, newPassword) => {
   const user = await getUserbyEmail(email)
   if (user.recoveryKey === key) {
-    const hashedPassword = await bcrypt.hash(newPassword, 5)
+    const hashedPassword = await hash(newPassword, 5)
     user.password = hashedPassword
     user.recoveryKey = ''
     await prisma.user.update({ where: { email }, data: user })
@@ -73,4 +73,4 @@ const putNewPassword = async (email, key, newPassword) => {
   }
 }
 
-module.exports = { getUserbyEmail, postUser, postRecoveryKey, putNewPassword }
+export default { getUserbyEmail, postUser, postRecoveryKey, putNewPassword }
