@@ -1,14 +1,14 @@
-const express = require('express')
-const cors = require('cors')
-const routes = require('./routes')
-const cookieParser = require('cookie-parser')
+import express, { json } from 'express'
+import cors from 'cors'
+import routes from './routes'
+import cookieParser from 'cookie-parser'
 
 const server = express()
 
-server.use(express.json())
+server.use(json())
 server.use(
   cors({
-    origin: "*",
+    origin: "https://pikapak.vercel.app",
     credentials: true,
   })
 )
@@ -16,4 +16,4 @@ server.use(cookieParser())
 
 server.use(routes)
 
-module.exports = server
+export default server
