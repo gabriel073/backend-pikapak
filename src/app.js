@@ -8,7 +8,7 @@ const server = express()
 server.use(json())
 server.use(
   cors({
-    origin: "https://pikapak.netlify.app",
+    origin: "*",
     credentials: true,
   })
 )
